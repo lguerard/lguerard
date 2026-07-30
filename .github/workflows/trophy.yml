@@ -19,10 +19,11 @@ jobs:
 
     steps:
       - name: generate trophy.svg
-        run: |
-          mkdir -p dist
-          curl -f --retry 3 --max-time 30 -o dist/trophy.svg \
-            "https://github-profile-trophy.vercel.app/?username=${{ github.repository_owner }}&theme=monokai&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=false"
+        uses: soulteary/github-profile-trophy-action@v1.0.0
+        with:
+          options: "username=${{ github.repository_owner }}&theme=monokai&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=false"
+          path: dist/trophy.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: push trophy.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
